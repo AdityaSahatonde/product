@@ -4,7 +4,15 @@ import Item from './Components/ProductView';
 import myData from './product.json';
 
 function App() {
-  console.log(myData.data)
+  // console.log(myData.data)
+  let KeyGenrForApp=(index)=>{
+    return `${ index }_${ new Date().getTime() }`;
+
+  }
+  let KeyGenrForItem =()=>{
+    return `${ new Date().getTime() }`;
+
+}
   return (
     <div className="App">
       {
@@ -14,9 +22,9 @@ function App() {
                 
               <><div className="Header"><p key={index}>{el.name}</p>
             
-              <hr style={{backgroundColor:"black"}}/></div>
-              <div className="Itme">
-              <Item ProductList={el.productList}/>
+              <hr key={KeyGenrForApp(index)} style={{backgroundColor:"black"}}/></div>
+              <div className="Itme" key={KeyGenrForApp(el.name)}>
+              <Item key={KeyGenrForItem()} ProductList={el.productList}/>
 
               </div>
               
