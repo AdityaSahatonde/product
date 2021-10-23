@@ -4,3 +4,21 @@
   height: -1px;
   border: 1px solid black;
 }
+
+.App{
+
+  padding: 50px;
+  
+  
+}
+.Itme{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  flex-direction: row;
+  /* float:left; */
+}
+/* .Header{
+  display: flex;
+  flex-direction: column;
+} */

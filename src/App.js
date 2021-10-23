@@ -10,10 +10,15 @@ function App() {
       {
         myData.data.map(
           (el,index)=>{
-              return (<><p key={index}>{el.name}</p>
-              {/* <span className="horizontalLine"></span> */}
-              <hr style={{backgroundColor:"black"}}/>
+              return (
+                
+              <><div className="Header"><p key={index}>{el.name}</p>
+            
+              <hr style={{backgroundColor:"black"}}/></div>
+              <div className="Itme">
               <Item ProductList={el.productList}/>
+
+              </div>
               
               </>
                 

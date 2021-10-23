@@ -1,6 +1,6 @@
 import React from 'react'
 import './ProductView.css'
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 function Item(props) {
     // console.log(props)
      const [Add, setAdd] = useState([])
@@ -8,7 +8,7 @@ function Item(props) {
         let TempArr = []
         TempArr.push(el)
         setAdd([...Add,TempArr])
-        console.log(el.name+" adde to the Cart");
+        console.log("Product Added to the cart.");
     //    return () => console.log(Add)
 
 
@@ -18,30 +18,39 @@ function Item(props) {
         
     }, [Add])
 
-    // const memoizedResult = useMemo(() => {
-    //     return console.log(Add);
-    //   }, [Add]);
+    // const AddCart = useMemo((el)=>{
+    //     let TempArr = []
+    //     TempArr.push(el)
+    //     setAdd([...Add,TempArr])
+    //     console.log("Product adde to the Cart");
+    //    console.log(Add)
+
+
+    // }, [Add]);
       
-    let DeleteCart = (el)=>{
+    let DeleteCart = (index)=>{
         let NewArr = [...Add];
-        let index = Array.indexOf(el);
-        console.log(index)
-        NewArr.splice(index,1);
+        // let index = Array.indexOf(el);
+        // console.log(index)
+        if(NewArr.length>0){
+            NewArr.splice(index,1);
+            console.log("Product removed from the cart.")
+        }
+        else{
+            console.log("Cart is Empty")
+        }
         setAdd(NewArr)
     }
     return (
-        <div>
+        <div className="Outer">
             {props.ProductList.map((el,index)=><div  className="ProductCell">
                <h3>Name : {el.name}</h3>
                <h3>Price : {el.price}</h3>
             
                <button onClick={()=>AddCart(el)}>Add to the cart</button>
-               <button oncClick={()=>DeleteCart(el)}>Remove from cart</button>
-               <div>
+               <button onClick={()=>DeleteCart(index)}>Remove from cart</button>
             
-
-               </div>
-                {/* { console.log(Add) } */}
+            
 
             </div>)}
         </div>
