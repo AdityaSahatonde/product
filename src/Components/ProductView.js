@@ -1,6 +1,6 @@
 import React from 'react'
 import './ProductView.css'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect} from 'react'
 function Item(props) {
 
      const [Add, setAdd] = useState([])
@@ -9,6 +9,7 @@ function Item(props) {
         
         setAdd([...Add,el])
         console.log("Product Added to the cart.");
+       
     
 
 
@@ -20,13 +21,21 @@ function Item(props) {
 
     
       
-    let DeleteCart = (index)=>{
+    let DeleteCart = (el)=>{
         let NewArr = [...Add];
-        // let index = Array.prototype.indexOf(el);
-        console.log(index);
+        
+        // console.log(el)
         if(NewArr.length>0){
-            NewArr.splice(index,1);
-            console.log("Product removed from the cart.")
+            let index = Add.indexOf(el)
+            // console.log(index);
+            if(index>=0){
+                NewArr.splice(index,1);
+                console.log("Product removed from the cart.")
+            }
+            else{
+                console.log("this Item is not Present in Cart")
+            }
+            
         }
         else{
             console.log("Cart is Empty")
@@ -36,8 +45,10 @@ function Item(props) {
     let KeyGenr = (index) =>{
         return `${ index }_${ new Date().getTime() }`;
     }
-    let KeyGenrForButton =()=>{
-        return `${ new Date().getTime() }`;
+    let KeyGenrForButton =(index,name)=>{
+    return `${name}_${ index }_${ new Date().getTime() }`;
+        
+        
 
     }
     return (
@@ -46,8 +57,8 @@ function Item(props) {
                <h3 key={KeyGenr(el.name)}>Name : {el.name}</h3>
                <h3 key={KeyGenr(el.price)}>Price : {el.price}</h3>
             
-               <button key={KeyGenrForButton()} onClick={()=>AddCart(el)}>Add to the cart</button>
-               <button key={KeyGenrForButton()} onClick={()=>DeleteCart(index)}>Remove from cart</button>
+               <button key={KeyGenrForButton(index,el.name)} onClick={()=>AddCart(el)}>Add to the cart</button>
+               <button key={KeyGenrForButton(index,el.price)} onClick={()=>DeleteCart(el)}>Remove from cart</button>
             
             
 
